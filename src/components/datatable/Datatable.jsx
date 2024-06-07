@@ -9,6 +9,7 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -47,20 +48,84 @@ const Datatable = ({route, title, columns}) => {
     }
   };
 
+
+  const handleStatus = async (id, action) => {
+    try {
+      await updateDoc(doc(db, route, id), {
+        adminApproval: action,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // const actionColumn = [
+  //   {
+  //     field: "action",
+  //     headerName: "Action",
+  //     width: 200,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="cellAction">
+  //           <Link to={`/${route}/${params.row.id}`} style={{ textDecoration: "none" }}>
+  //             <div className="viewButton">Edit</div>
+  //           </Link>
+  //           <div
+  //             className="deleteButton"
+  //             onClick={() => handleDelete(params.row.id)}
+  //           >
+  //             Delete
+  //           </div>
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        return (
+        const { row } = params;
+        const { id } = row;
+        const currentRoute = window.location.pathname.split("/")[1]; // Extracting current route from URL
+  
+        // Check if current route is one of the restricted routes
+        const isRestrictedRoute = ["users", "record", "review", "instructor"].includes(currentRoute);
+  
+        // Conditionally render Link based on route
+        const editLink = isRestrictedRoute ? null : (
+          <Link to={`/${route}/${id}`} style={{ textDecoration: "none" }}>
+            <div className="viewButton">Edit</div>
+          </Link>
+        );
+  
+        // Conditionally render "Approve" and "Reject" buttons for instructor route
+        const instructorButtons = window.location.pathname.includes("/instructor") && (
           <div className="cellAction">
-            <Link to={`/${route}/${params.row.id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
-            </Link>
+            <div
+              className="viewButton"
+              onClick={() => handleStatus(id, true)}
+            >
+              Approve
+            </div>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleStatus(id, false)}
+            >
+              Reject
+            </div>
+          </div>
+        );
+  
+        return (
+          <div className="cellAction">
+            {editLink}
+            {instructorButtons}
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(id)}
             >
               Delete
             </div>
@@ -69,23 +134,44 @@ const Datatable = ({route, title, columns}) => {
       },
     },
   ];
+  
+  
   return (
+    // <div className="datatable">
+    //   <div className="datatableTitle">
+    //     {title}
+    //     <Link to={`/${route}/create`} className="link">
+    //       Add New
+    //     </Link>
+    //   </div>
+    //   <DataGrid
+    //     className="datagrid"
+    //     rows={data}
+    //     columns={columns.concat(actionColumn)}
+    //     pageSize={9}
+    //     rowsPerPageOptions={[9]}
+    //     checkboxSelection
+    //   />
+    // </div>
     <div className="datatable">
-      <div className="datatableTitle">
-        {title}
+    <div className="datatableTitle">
+      {title}
+      {/* Conditionally render Add New link based on route */}
+      {["user", "record", "review", "instructor"].includes(route) ? null : (
         <Link to={`/${route}/create`} className="link">
           Add New
         </Link>
-      </div>
-      <DataGrid
-        className="datagrid"
-        rows={data}
-        columns={columns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
+      )}
     </div>
+    <DataGrid
+      className="datagrid"
+      rows={data}
+      columns={columns.concat(actionColumn)}
+      pageSize={9}
+      rowsPerPageOptions={[9]}
+      checkboxSelection
+    />
+  </div>
   );
 };
 

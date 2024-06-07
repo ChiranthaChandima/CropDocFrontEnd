@@ -9,7 +9,7 @@ import "./style/dark.scss";
 import { useContext, useEffect } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { diseaseColumns, treatmentColumns, userColumns, locationColumns, recordColumns, instructorColumns } from "./datatablesource";
+import { diseaseColumns, treatmentColumns, userColumns, locationColumns, recordColumns, instructorColumns, feedbackColunms } from "./datatablesource";
 import {
   collection,
   getDocs,
@@ -164,6 +164,16 @@ function App() {
                 element={
                   <RequireAuth>
                     <List route={"instructor"} title="Pofessionals" columns={instructorColumns}/>
+                  </RequireAuth>
+                }
+              />
+            </Route>
+            <Route path="review">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <List route={"review"} title="Feedbacks" columns={feedbackColunms}/>
                   </RequireAuth>
                 }
               />

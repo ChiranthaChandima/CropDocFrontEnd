@@ -16,12 +16,12 @@ const Widget = ({ type }) => {
   let data;
 
   switch (type) {
-    case "user":
+    case "users":
       data = {
         title: "USERS",
         isMoney: false,
         link: "See all users",
-        query:"users",
+        query:"user",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -38,7 +38,7 @@ const Widget = ({ type }) => {
         title: "PROFESSIONALS",
         isMoney: false,
         link: "View professionals",
-        query:"proffessional",
+        query:"instructor",
         icon: (
           <PersonOutlineIcon
             className="icon"
@@ -50,10 +50,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "pending":
+    case "disease":
       data = {
         title: "PENDING FOR APPROVAL",
-        query:"records",
+        query:"disease",
         link: "View pending requests",
         icon: (
           <HourglassBottomIcon
@@ -66,7 +66,7 @@ const Widget = ({ type }) => {
     case "records":
       data = {
         title: "RECORDS",
-        query:"records",
+        query:"record",
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon
@@ -104,6 +104,7 @@ const Widget = ({ type }) => {
       const prevMonthData = await getDocs(prevMonthQuery);
 
       setAmount(lastMonthData.docs.length);
+      console.log(amount);
       setDiff(
         ((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) *
           100

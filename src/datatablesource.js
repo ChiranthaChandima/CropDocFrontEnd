@@ -131,4 +131,35 @@ export const instructorColumns = [
     headerName: "Working ID",
     width: 230,
   },
+  {
+    field: "approval",
+    headerName: "Approval",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+            <div className="">{params.row.adminApproval ? "YES":"NO"}</div>
+        </div>
+      );
+    },
+  },
+];
+
+  export const feedbackColunms = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "instructorName",
+      headerName: "Instructor Name",
+      width: 230,
+    },
+    {
+      field: "userName",
+      headerName: "Reviewer Name",
+      width: 230,
+    },
+    {
+      field: "review",
+      headerName: "FeedBack",
+      width: 230,
+    },
 ];

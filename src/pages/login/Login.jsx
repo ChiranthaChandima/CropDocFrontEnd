@@ -30,22 +30,35 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-        {error && <span>Wrong email or password!</span>}
-      </form>
+    // <div className="login">
+    //   <form onSubmit={handleLogin}>
+    //     <input
+    //       type="email"
+    //       placeholder="email"
+    //       onChange={(e) => setEmail(e.target.value)}
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="password"
+    //       onChange={(e) => setPassword(e.target.value)}
+    //     />
+    //     <button type="submit">Login</button>
+    //     {error && <span>Wrong email or password!</span>}
+    //   </form>
+    // </div>
+    <div class="login">
+  <form onSubmit={handleLogin}>
+    <h2>CropDoc Admin Login</h2>
+    <div class="form-group">
+      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
     </div>
+    <div class="form-group">
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+    </div>
+    <button type="submit">Login</button>
+    {error && <span>Wrong email or password!</span>}
+  </form>
+</div>
   );
 };
 

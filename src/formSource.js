@@ -133,31 +133,31 @@ export const userInputs = [
     },
   ];
   
-  export const userColumns = [
-    { field: "id", headerName: "ID", width: 70 },
-    {
-      field: "username",
-      headerName: "User Name",
-      width: 230,
-    },
-    {
-      field: "district",
-      headerName: "District",
-      width: 230,
-    },
-    {
-      field: "division",
-      headerName: "Division",
-      width: 230,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      width: 230,
-    },
-    {
-      field: "mobileNo",
-      headerName: "Mobile Number",
-      width: 230,
-    },
-  ];
+  // export const userColumns = [
+  //   { field: "id", headerName: "ID", width: 70 },
+  //   {
+  //     field: "username",
+  //     headerName: "User Name",
+  //     width: 230,
+  //   },
+  //   {
+  //     field: "district",
+  //     headerName: "District",
+  //     width: 230,
+  //   },
+  //   {
+  //     field: "division",
+  //     headerName: "Division",
+  //     width: 230,
+  //   },
+  //   {
+  //     field: "email",
+  //     headerName: "Email",
+  //     width: 230,
+  //   },
+  //   {
+  //     field: "mobileNo",
+  //     headerName: "Mobile Number",
+  //     width: 230,
+  //   },
+  // ];

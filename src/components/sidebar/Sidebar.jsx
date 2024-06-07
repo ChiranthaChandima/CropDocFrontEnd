@@ -12,6 +12,7 @@ import { useContext } from "react";
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Sidebar = () => {
   return (
@@ -68,14 +69,20 @@ const Sidebar = () => {
             <span>Professionals</span>
           </li>
           </Link>
+          <Link to="/review" style={{ textDecoration: "none"}}>
           <li>
             <ReviewsIcon className="icon" />
             <span>Feedbacks</span>
           </li>
+          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
+          </li>
+          <li>
+            <LogoutIcon className="icon" />
+            <span>Logout</span>
           </li>
         </ul>
       </div>

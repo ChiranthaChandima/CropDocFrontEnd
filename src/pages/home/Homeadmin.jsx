@@ -11,15 +11,15 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="user" />
+          <Widget type="users" />
           <Widget type="records" />
           <Widget type="proffessional" />
-          <Widget type="pending" />
+          <Widget type="disease" />
         </div>
         
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
-          <Table />
+          <div className="listTitle">Latest Login Users</div>
+
         </div>
       </div>
     </div>
